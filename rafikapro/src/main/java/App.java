@@ -1,10 +1,6 @@
 import config.DatabaseConnection;
-import users.role.entity.Role;
 import users.role.sevice.RoleDAOImpl;
-import users.user.entity.User;
-import users.user.service.UserDaoImpl;
-
-import java.time.LocalDateTime;
+import users.user.service.user_service.UserDaoImpl;
 
 public class App {
     public static void main(String[] args){

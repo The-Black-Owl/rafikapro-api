@@ -1,4 +1,4 @@
-package users.user.service;
+package users.user.service.user_service;
 
 import users.role.entity.Role;
 import users.user.entity.User;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class UserDaoImpl implements UserDAO{
+public class UserDaoImpl implements UserDAO {
     private final String connectionUrl = "jdbc:mysql://localhost:3306/rafika?user=root&password=password";
 
     @Override

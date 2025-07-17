@@ -1,4 +1,4 @@
-package users.user.service;
+package users.user.service.user_service;
 
 import users.user.entity.User;
 
