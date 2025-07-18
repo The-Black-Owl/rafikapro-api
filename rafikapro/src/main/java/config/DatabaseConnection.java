@@ -33,6 +33,16 @@ public class DatabaseConnection {
                 "FOREIGN KEY (role_id) REFERENCES roles(id));";
         //create vendor table
         //create organizer table
+        String createOrganizerTable="CREATE TABLE IF NOT EXISTS organizers (" +
+                " id BIGINT PRIMARY KEY AUTO_INCREMENT," +
+                " user_id BIGINT NOT NULL," +
+                " company_name VARCHAR(100)," +
+                " license_number VARCHAR(50)," +
+                " contact_person VARCHAR(100)," +
+                " created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP," +
+                " subscription_tier VARCHAR(50),"+
+                " FOREIGN KEY (user_id) REFERENCES users(id)" +
+                ");";
 
         try(
                 Connection connection=DriverManager.getConnection(connectionUrl);
