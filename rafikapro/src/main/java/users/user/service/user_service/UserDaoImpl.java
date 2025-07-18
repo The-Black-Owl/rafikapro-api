@@ -18,7 +18,7 @@ public class UserDaoImpl implements UserDAO {
         String createUserQuery="INSERT INTO users(name,email,phone,password,role_id,created,isActive)VALUES(?,?,?,?,?,?,?);";
         try(
                 Connection connection= DriverManager.getConnection(connectionUrl);
-                PreparedStatement preparedStatement= connection.prepareStatement(createUserQuery)){
+                PreparedStatement preparedStatement= connection.prepareStatement(createUserQuery,Statement.RETURN_GENERATED_KEYS)){
             preparedStatement.setString(1,user.getName());
             preparedStatement.setString(2,user.getEmail());
             preparedStatement.setString(3,user.getPhone());
@@ -55,8 +55,8 @@ public class UserDaoImpl implements UserDAO {
         String getUserByIdQuery="SELECT u.*,r.id AS role_id, r.name AS role_name FROM users u JOIN roles r ON r.id=u.role_id WHERE u.id=?";
         try(
                 Connection connection=DriverManager.getConnection(connectionUrl);
-                PreparedStatement preparedStatement=connection.prepareStatement(getUserByIdQuery);
-                ){
+                PreparedStatement preparedStatement=connection.prepareStatement(getUserByIdQuery)
+        ){
             preparedStatement.setLong(1,id);
             ResultSet resultSet= preparedStatement.executeQuery();
             Optional.of(resultSet.next()).ifPresent(result->{

@@ -35,9 +35,9 @@ public class DatabaseConnection {
         //create organizer table
         String createOrganizerTable="CREATE TABLE IF NOT EXISTS organizers (" +
                 " id BIGINT PRIMARY KEY AUTO_INCREMENT," +
-                " user_id BIGINT NOT NULL," +
+                " user_id INT NOT NULL," +
                 " company_name VARCHAR(100)," +
-                " license_number VARCHAR(50)," +
+                " license_number VARCHAR(50) UNIQUE," +
                 " contact_person VARCHAR(100)," +
                 " created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP," +
                 " subscription_tier VARCHAR(50),"+
@@ -55,6 +55,8 @@ public class DatabaseConnection {
 
             // Create users table next
             statement.executeUpdate(createUserTable);
+            //Create organizers table
+            statement.executeUpdate(createOrganizerTable);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
