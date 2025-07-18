@@ -5,10 +5,10 @@ import users.user.entity.User;
 import java.util.List;
 
 public interface UserDAO {
-    void addUser(User user);
+    User addUser(User user);
     User getUserById(Long id);
     User getUserByEmail(String email);
-    void updateUser(User user);
+    User updateUser(User user);
     void deleteUserById(Long id);
     List<User> getAllUsers();
     List<User> filterByActiveUsers();

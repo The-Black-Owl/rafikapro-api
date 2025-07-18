@@ -14,7 +14,7 @@ public class UserDaoImpl implements UserDAO {
     private final String connectionUrl = "jdbc:mysql://localhost:3306/rafika?user=root&password=password";
 
     @Override
-    public void addUser(User user) {
+    public User addUser(User user) {
         String createUserQuery="INSERT INTO users(name,email,phone,password,role_id,created,isActive)VALUES(?,?,?,?,?,?,?);";
         try(
                 Connection connection= DriverManager.getConnection(connectionUrl);
@@ -26,8 +26,24 @@ public class UserDaoImpl implements UserDAO {
             preparedStatement.setLong(5,user.getRole().getId());
             preparedStatement.setTimestamp(6,Timestamp.valueOf(user.getCreatedAt()));
             preparedStatement.setBoolean(7,user.isActive());
-            preparedStatement.executeUpdate();
-            System.out.println("User created");
+            int affectedRows = preparedStatement.executeUpdate();
+
+            if (affectedRows == 0) {
+                throw new SQLException("Creating user failed, no rows affected.");
+            }
+
+            try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    user.setId(generatedKeys.getLong(1)); // set the new ID
+                } else {
+                    throw new SQLException("Creating user failed, no ID obtained.");
+                }
+            }
+
+            System.out.println("User created with ID: " + user.getId());
+            return user;
+
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -102,7 +118,7 @@ public class UserDaoImpl implements UserDAO {
     }
 
     @Override
-    public void updateUser(User user) {
+    public User updateUser(User user) {
         String updateQuery="UPDATE users SET name=?,phone=? WHERE id=?";
         try(
                 Connection connection=DriverManager.getConnection(connectionUrl);
@@ -111,9 +127,15 @@ public class UserDaoImpl implements UserDAO {
             preparedStatement.setString(1, user.getName());
             preparedStatement.setString(2, user.getPhone());
             preparedStatement.setLong(3,user.getId());
-            preparedStatement.executeUpdate();
 
-            System.out.println("User details updated");
+            int affectedRows = preparedStatement.executeUpdate();
+
+            if (affectedRows == 0) {
+                throw new SQLException("Creating user failed, no rows affected.");
+            }
+
+            System.out.println("User updated with ID: " + user.getId());
+            return user;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -127,8 +149,13 @@ public class UserDaoImpl implements UserDAO {
                 PreparedStatement preparedStatement=connection.prepareStatement(deleteQuery);
                 ){
             preparedStatement.setLong(1,id);
-            preparedStatement.executeUpdate();
-            System.out.println("User has been removed");
+            int affectedRows = preparedStatement.executeUpdate();
+
+            if (affectedRows == 0) {
+                throw new SQLException("Deleting user failed, no rows affected.");
+            }
+
+            System.out.println("User has been deleted " );
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
