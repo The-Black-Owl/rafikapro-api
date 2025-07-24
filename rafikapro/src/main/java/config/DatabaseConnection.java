@@ -32,6 +32,16 @@ public class DatabaseConnection {
                 "isActive BOOLEAN," +
                 "FOREIGN KEY (role_id) REFERENCES roles(id));";
         //create vendor table
+        String createVendorQuery="CREATE TABLE vendors (" +
+                "id BIGINT PRIMARY KEY AUTO_INCREMENT," +
+                "user_id INT NOT NULL," +
+                "trading_number VARCHAR(100) NOT NULL UNIQUE," +
+                "vendor_type ENUM('RETAIL', 'INDEPENDENT') NOT NULL," +
+                "subscription_tier VARCHAR(50) DEFAULT 'STEEL'," +
+                "tickets_sold INT DEFAULT 0," +
+                "created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP," +
+                "FOREIGN KEY (user_id) REFERENCES users(id)" +
+                ");";
         //create organizer table
         String createOrganizerTable="CREATE TABLE IF NOT EXISTS organizers (" +
                 " id BIGINT PRIMARY KEY AUTO_INCREMENT," +
@@ -49,14 +59,14 @@ public class DatabaseConnection {
                 Statement statement=connection.createStatement()){
             // Create roles first
             statement.executeUpdate(createRoleTable);
-
             // Insert roles safely
             statement.executeUpdate(insertRole);
-
             // Create users table next
             statement.executeUpdate(createUserTable);
             //Create organizers table
             statement.executeUpdate(createOrganizerTable);
+            //create vendor query
+            statement.executeUpdate(createVendorQuery);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
