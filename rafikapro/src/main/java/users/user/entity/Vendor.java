@@ -7,8 +7,9 @@ public class Vendor {
     private User user; // if linking to User
     private String tradingNumber;
 //    private List<Ticket> allocatedTickets; // Optional for Phase 1
-//    private int ticketsSold; // or double for revenue
+    private int ticketsSold;
     private String subscriptionTier;
+    private String vendorType;
     private LocalDateTime createdAt;
 
     public Long getVendorId() {
@@ -49,5 +50,21 @@ public class Vendor {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getVendorType() {
+        return vendorType;
+    }
+
+    public void setVendorType(String vendorType) {
+        this.vendorType = vendorType;
+    }
+
+    public int getTicketsSold() {
+        return ticketsSold;
+    }
+
+    public void setTicketsSold(int ticketsSold) {
+        this.ticketsSold = ticketsSold;
     }
 }
