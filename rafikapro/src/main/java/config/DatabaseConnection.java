@@ -32,7 +32,7 @@ public class DatabaseConnection {
                 "isActive BOOLEAN," +
                 "FOREIGN KEY (role_id) REFERENCES roles(id));";
         //create vendor table
-        String createVendorQuery="CREATE TABLE vendors (" +
+        String createVendorQuery="CREATE TABLE IF NOT EXISTS vendors (" +
                 "id BIGINT PRIMARY KEY AUTO_INCREMENT," +
                 "user_id INT NOT NULL," +
                 "trading_number VARCHAR(100) NOT NULL UNIQUE," +

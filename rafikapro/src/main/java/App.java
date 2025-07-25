@@ -3,8 +3,11 @@ import users.role.entity.Role;
 import users.role.sevice.RoleDAOImpl;
 import users.user.entity.Organizer;
 import users.user.entity.User;
+import users.user.entity.Vendor;
+import users.user.reference.UserReferences;
 import users.user.service.organizer_service.OrganizerDaoImpl;
 import users.user.service.user_service.UserDaoImpl;
+import users.user.service.vendor_service.VendorDaoImpl;
 
 import java.time.LocalDateTime;
 
@@ -14,42 +17,17 @@ public class App {
         RoleDAOImpl roleDAO=new RoleDAOImpl();
         UserDaoImpl userDao=new UserDaoImpl();
         OrganizerDaoImpl organizerDAO=new OrganizerDaoImpl();
+        VendorDaoImpl vendorDao=new VendorDaoImpl();
 
-//        User user=new User();
-//        Role organizerRole= roleDAO.getRoleById(2L);
-//        user.setName("Alice Events");
-//        user.setEmail("alice@durbanevents.co.za");
-//        user.setPhone("0123456789");
-//        user.setPassword("secret123");
-//        user.setRole(organizerRole);
-//        user.setCreatedAt(LocalDateTime.now());
-//        user.setActive(true);
-//
-//        user = userDao.addUser(user);
-//
-//        System.out.println("User created with ID: " + user.getId());
-//
-//        Organizer organizer = new Organizer();
-//        organizer.setUser(user);
-//        organizer.setCompanyName("Alice's Big Events");
-//        organizer.setLicenseNumber("LIC-2025-XYZ");
-//        organizer.setContactPerson("Alice M.");
-//        organizer.setSubscriptionTier("Steel");
-//        organizer.setCreatedAt(LocalDateTime.now());
-//
-//        organizer = organizerDAO.createOrganizer(organizer);
-//
-//        System.out.println("Organizer created with ID: " + organizer.getId());
+        User user= userDao.getUserById(5L);
 
-//        userDao.getAllUsers().forEach(
-//                user_ -> System.out.println(user_.toString())
-//        );
-//
-//        organizerDAO.getAllOrganizers().forEach(
-//                organizer_->System.out.println(organizer_.toString())
-//        );
+        Vendor vendor=new Vendor();
+        vendor.setUser(user);
+        vendor.setVendorType(UserReferences.vendorType.INDEPENDENT.toString());
+        vendor.setTradingNumber("AAAA12356");
+        Vendor newVendor= vendorDao.createVendor(vendor);
 
-        System.out.println(organizerDAO.getOrganizerBySubscription("bronze").toString());
+        System.out.println(newVendor.toString());
     }
 
 }

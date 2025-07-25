@@ -4,11 +4,8 @@ import users.role.entity.Role;
 import users.user.entity.Organizer;
 import users.user.entity.User;
 import users.user.reference.UserReferences;
-import users.user.service.user_service.UserDaoImpl;
 
 import java.sql.*;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -31,7 +28,7 @@ public class OrganizerDaoImpl implements OrganizerDAO {
             preparedStatement.setLong(1,organizer.getUser().getId());
             preparedStatement.setString(2,organizer.getCompanyName());
             preparedStatement.setString(3,organizer.getLicenseNumber());
-            preparedStatement.setString(4,organizer.getLicenseNumber());
+            preparedStatement.setString(4,organizer.getContactPerson());
             preparedStatement.setString(5, UserReferences.subscriptionTiers.BRONZE.toString());
 
             int created= preparedStatement.executeUpdate();

@@ -67,4 +67,17 @@ public class Vendor {
     public void setTicketsSold(int ticketsSold) {
         this.ticketsSold = ticketsSold;
     }
+
+    @Override
+    public String toString() {
+        return "Vendor{" +
+                "vendorId=" + vendorId +
+                ", user=" + user.getName() +
+                ", tradingNumber='" + tradingNumber + '\'' +
+                ", ticketsSold=" + ticketsSold +
+                ", subscriptionTier='" + subscriptionTier + '\'' +
+                ", vendorType='" + vendorType + '\'' +
+                ", createdAt=" + createdAt +
+                '}';
+    }
 }
