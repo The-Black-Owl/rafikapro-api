@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface VendorDao {
     Vendor createVendor(Vendor vendor);
-    Vendor updateVendor(Vendor vendor);
+    Vendor updateVendor(Long id, String tradingNumber);
     List<Vendor> getAllVendors();
     List<Vendor> getVendorByVendorType(String vendorType);
     List<Vendor> getVendorBySubscriptionType(String subscription);

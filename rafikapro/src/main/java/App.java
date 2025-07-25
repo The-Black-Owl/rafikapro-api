@@ -19,15 +19,19 @@ public class App {
         OrganizerDaoImpl organizerDAO=new OrganizerDaoImpl();
         VendorDaoImpl vendorDao=new VendorDaoImpl();
 
-        User user= userDao.getUserById(5L);
+//        User user= userDao.getUserById(5L);
 
-        Vendor vendor=new Vendor();
-        vendor.setUser(user);
-        vendor.setVendorType(UserReferences.vendorType.INDEPENDENT.toString());
-        vendor.setTradingNumber("AAAA12356");
-        Vendor newVendor= vendorDao.createVendor(vendor);
-
-        System.out.println(newVendor.toString());
+//        Vendor vendor=new Vendor();
+//        vendor.setUser(user);
+//        vendor.setVendorType(UserReferences.vendorType.INDEPENDENT.toString());
+//        vendor.setTradingNumber("AAAA12356");
+//        Vendor newVendor= vendorDao.createVendor(vendor);
+//
+//        System.out.println(newVendor.toString());
+//        Organizer organizer=organizerDAO.getOrganizerById(1L);
+//        System.out.println(organizer.toString());
+//        System.out.println(vendorDao.getVendorById(1L).toString());
+//        vendorDao.getAllVendors().forEach(vendor -> System.out.println(vendor.toString()));
     }
 
 }
