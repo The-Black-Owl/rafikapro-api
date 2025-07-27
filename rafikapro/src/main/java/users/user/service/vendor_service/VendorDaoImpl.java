@@ -81,7 +81,7 @@ public class VendorDaoImpl implements VendorDao {
         try (
                 Connection connection=DriverManager.getConnection(connectionUrl);
                 PreparedStatement preparedStatement=connection.prepareStatement(getAllVendors);
-                ResultSet resultSet= preparedStatement.executeQuery();
+                ResultSet resultSet= preparedStatement.executeQuery()
 
         ){
             while(resultSet.next()){
@@ -112,7 +112,7 @@ public class VendorDaoImpl implements VendorDao {
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
-            };
+            }
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -145,7 +145,7 @@ public class VendorDaoImpl implements VendorDao {
                 "WHERE v.vendor_type=?";
         try (
                 Connection connection=DriverManager.getConnection(connectionUrl);
-                PreparedStatement preparedStatement=connection.prepareStatement(getVendorsByVendorType);
+                PreparedStatement preparedStatement=connection.prepareStatement(getVendorsByVendorType)
 
         ){
             preparedStatement.setString(1,vendorType.toUpperCase());
@@ -178,7 +178,7 @@ public class VendorDaoImpl implements VendorDao {
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
-            };
+            }
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -211,7 +211,7 @@ public class VendorDaoImpl implements VendorDao {
                 "WHERE v.subscription_tier=?";
         try (
                 Connection connection=DriverManager.getConnection(connectionUrl);
-                PreparedStatement preparedStatement=connection.prepareStatement(getAllVendors);
+                PreparedStatement preparedStatement=connection.prepareStatement(getAllVendors)
 
         ){
             preparedStatement.setString(1,subscription.toUpperCase());
@@ -244,7 +244,7 @@ public class VendorDaoImpl implements VendorDao {
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
-            };
+            }
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -274,7 +274,7 @@ public class VendorDaoImpl implements VendorDao {
                 "FROM vendors v " +
                 "JOIN users u ON v.user_id = u.id " +
                 "JOIN roles r ON u.role_id = r.id " +
-                "WHERE v.id=?";;
+                "WHERE v.id=?";
         try (
                 Connection connection=DriverManager.getConnection(connectionUrl);
                 PreparedStatement preparedStatement=connection.prepareStatement(getVendorByID)
