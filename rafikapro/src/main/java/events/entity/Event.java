@@ -123,4 +123,23 @@ public class Event {
     public void setCreated_at(LocalDateTime created_at) {
         this.created_at = created_at;
     }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "id=" + id +
+                ", organizer=" + organizer +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", location='" + location + '\'' +
+                ", startDateTime=" + startDateTime +
+                ", endDateTime=" + endDateTime +
+                ", totalTickets=" + totalTickets +
+                ", ticketsSold=" + ticketsSold +
+                ", ticketPrice=" + ticketPrice +
+                ", category='" + category + '\'' +
+                ", status='" + status + '\'' +
+                ", created_at=" + created_at +
+                '}';
+    }
 }
