@@ -6,7 +6,6 @@ import users.user.entity.Organizer;
 import users.user.entity.User;
 
 import java.sql.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -586,6 +585,7 @@ public class EventsDaoImpl implements EventsDao{
 
     @Override
     public void updateTicketsSold(Long eventId, int incrementBy) {
+        System.out.println("Ticket updating is under construction");
     }
 
     @Override
