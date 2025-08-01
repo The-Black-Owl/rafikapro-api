@@ -24,8 +24,8 @@ public class UserDaoImpl implements UserDAO {
             preparedStatement.setString(3,user.getPhone());
             preparedStatement.setString(4,user.getPassword());
             preparedStatement.setLong(5,user.getRole().getId());
-            preparedStatement.setTimestamp(6,Timestamp.valueOf(user.getCreatedAt()));
-            preparedStatement.setBoolean(7,user.isActive());
+            preparedStatement.setTimestamp(6,Timestamp.valueOf(LocalDateTime.now()));
+            preparedStatement.setBoolean(7,true);
             int affectedRows = preparedStatement.executeUpdate();
 
             if (affectedRows == 0) {
@@ -39,8 +39,6 @@ public class UserDaoImpl implements UserDAO {
                     throw new SQLException("Creating user failed, no ID obtained.");
                 }
             }
-
-            System.out.println("User created with ID: " + user.getId());
             return user;
 
 
